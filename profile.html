@@ -8,7 +8,7 @@
 
 <h1>👤 個人狀態</h1>
 
-<p id="status">載入中...</p>
+<p id="showStatus">載入中...</p>
 
 <a href="edit.html">⚙️ 修改狀態</a>
 
@@ -16,9 +16,9 @@
 let status = localStorage.getItem("status");
 
 if (status) {
-  document.getElementById("status").innerText = status;
+  document.getElementById("showStatus").innerText = status;
 } else {
-  document.getElementById("status").innerText = "尚未設定";
+  document.getElementById("showStatus").innerText = "尚未設定";
 }
 </script>
 
