@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>設定</title>
+</head>
+<body>
+
+<h1>⚙️ 設定狀態</h1>
+
+<select id="status">
+  <option>可正常上班</option>
+  <option>建議休息</option>
+  <option>需請假</option>
+</select>
+
+<br><br>
+<button onclick="save()">儲存</button>
+
+<script>
+function save() {
+  let value = document.getElementById("status").value;
+  localStorage.setItem("status", value);
+  alert("已儲存！");
+}
+</script>
+
+</body>
+</html>
