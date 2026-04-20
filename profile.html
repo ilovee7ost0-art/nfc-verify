@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>個人資訊</title>
+</head>
+<body>
+
+<h1>👤 個人狀態</h1>
+
+<p id="status">載入中...</p>
+
+<a href="edit.html">⚙️ 修改狀態</a>
+
+<script>
+let status = localStorage.getItem("status");
+
+if (status) {
+  document.getElementById("status").innerText = status;
+} else {
+  document.getElementById("status").innerText = "尚未設定";
+}
+</script>
+
+</body>
+</html>
