@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <title>身份驗證系統</title>
+  <style>
+    body { font-family: Arial; text-align: center; padding: 40px; }
+    .card { border: 1px solid #ccc; padding: 20px; border-radius: 10px; }
+    .hidden { display: none; }
+    .red { color: red; font-size: 26px; }
+    input { padding: 10px; font-size: 16px; }
+    button { padding: 10px 20px; margin-top: 10px; }
+  </style>
+</head>
+
+<body>
+
+<h1>🔐 身份驗證系統</h1>
+
+<div class="card">
+  <p>請向持有人取得驗證碼</p>
+  <input id="inputCode" placeholder="輸入驗證碼">
+  <br><br>
+  <button onclick="checkCode()">驗證</button>
+</div>
+
+<div id="result" class="card hidden">
+  <p class="red">✅ 驗證成功（建議讓座）</p>
+  <p>有效時間：7天內</p>
+</div>
+
+<hr>
+
+<h2>👤 持有人畫面（展示用）</h2>
+<p>驗證碼：<span id="code"></span></p>
+<p>剩餘時間：<span id="timer"></span> 秒</p>
+
+<script>
+let currentCode = "";
+let timeLeft = 60;
+
+function generateCode() {
+  const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+  let code = "";
+  for (let i = 0; i < 6; i++) {
+    code += chars.charAt(Math.floor(Math.random() * chars.length));
+  }
+  return code;
+}
+
+function newCode() {
+  currentCode = generateCode();
+  document.getElementById("code").innerText = currentCode;
+  timeLeft = 60;
+}
+
+function checkCode() {
+  let input = document.getElementById("inputCode").value;
+  if (input === currentCode) {
+    document.getElementById("result").classList.remove("hidden");
+  } else {
+    alert("驗證碼錯誤");
+  }
+}
+
+setInterval(() => {
+  timeLeft--;
+  document.getElementById("timer").innerText = timeLeft;
+
+  if (timeLeft <= 0) {
+    newCode();
+  }
+}, 1000);
+
+newCode();
+</script>
+
+</body>
+</html>
